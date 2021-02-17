@@ -7,6 +7,7 @@ import './App.css';
 function App() {
   //Constantes & Lets
   const [ quotes, setQuotes] = useState([])
+  const [ classesOptions, setClassesOptions] = useState([])
 
 // Api api/quotes/options
 const ValidValues = async() => {
@@ -27,9 +28,15 @@ const CallQuotesCount = async () => {
   }
 }
 
+const doClassesArr = (obj) => {
+  const NewArray = [...obj.classOptions];
+  setClassesOptions(NewArray)
+}
+
 useEffect(() => {
   ValidValues()
-  .then((results) => console.log(results.data))
+  .then((results) => {console.log(results.data)
+                  return doClassesArr(results.data)})
 }, [])
 
 
@@ -51,7 +58,7 @@ useEffect(() => {
   return (
     <div className="App">
       <Quote quotes={quotes}/>
-      <CreateQuote/>
+      <CreateQuote classes={classesOptions}/>
     </div>
   );
 }

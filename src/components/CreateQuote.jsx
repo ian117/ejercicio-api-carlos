@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 
-const CreateQuote = () => {
+const CreateQuote = ({classes}) => {
     
     const { register, handleSubmit } = useForm();
 
@@ -20,15 +20,17 @@ const CreateQuote = () => {
           placeholder="Quote"
         />
       </label>
+
       <label>
         Password:
-        <input
-          type="text"
-          placeholder="Class"
-          name="class"
-          ref={register}
-        />
-      </label>
+        <select name="class" ref={register}>
+        {classes.map(value => (
+                <option key={value} value={value}>
+                     {value}
+                </option>
+            ))}
+        </select>
+      </label> 
 
       <button>Add phrase!</button>
     </form>
