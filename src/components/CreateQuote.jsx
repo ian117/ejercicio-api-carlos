@@ -1,13 +1,21 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 const CreateQuote = ({classes}) => {
     
     const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data) => {
-      console.log(data);
-    };
+    const onSubmit = async (data) => {
+        try {
+            axios.post('https://prof-quotes.herokuapp.com/api/quotes', {
+                quote: data.quote,
+                class: data.class
+              });
+          } catch (er) {
+            console.error(er)
+          }
+        }
 
    return (
     <form onSubmit={handleSubmit(onSubmit)}>
