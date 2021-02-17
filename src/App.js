@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Quote from './components/Quote'
+import CreateQuote from './components/CreateQuote'
 import './App.css';
 
 function App() {
@@ -50,6 +51,7 @@ useEffect(() => {
   return (
     <div className="App">
       <Quote quotes={quotes}/>
+      <CreateQuote/>
     </div>
   );
 }
